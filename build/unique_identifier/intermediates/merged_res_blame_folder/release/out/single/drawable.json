@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/drawable/notification_bg_low.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/drawable/notification_bg.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/drawable/notification_tile_bg.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/drawable/notification_icon_background.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/drawable/notification_icon_background.xml"
+    }
+]

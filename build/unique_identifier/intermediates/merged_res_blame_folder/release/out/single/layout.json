@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/layout/notification_template_part_time.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/layout/ime_base_split_test_activity.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/layout/ime_base_split_test_activity.xml"
+    },
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/layout/custom_dialog.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/layout/ime_secondary_split_test_activity.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/layout/ime_secondary_split_test_activity.xml"
+    },
+    {
+        "merged": "altercode.xyz.unique_identifier-merged_res-25:/layout/notification_template_part_chronometer.xml",
+        "source": "altercode.xyz.unique_identifier-core-1.13.1-16:/layout/notification_template_part_chronometer.xml"
+    }
+]

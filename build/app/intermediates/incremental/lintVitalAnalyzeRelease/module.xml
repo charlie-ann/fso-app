@@ -1,0 +1,18 @@
+<lint-module
+    format="1"
+    dir="/Users/Frederick1/Documents/GitHub/fso_support/android/app"
+    name=":app"
+    type="APP"
+    maven="android:app:"
+    agpVersion="8.1.0"
+    buildFolder="/Users/Frederick1/Documents/GitHub/fso_support/build/app"
+    bootClassPath="/Users/Frederick1/Library/Android/sdk/platforms/android-34/android.jar:/Users/Frederick1/Library/Android/sdk/build-tools/33.0.1/core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-34">
+  <lintOptions
+      abortOnError="true"
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

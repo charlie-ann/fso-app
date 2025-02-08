@@ -30,6 +30,20 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs camera access to scan QR codes</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs photos access to get QR code from photo library</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Log into your payvice agent account using your FaceID</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Turning on your location service enables us to secure your account and offer you better services</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Turning on your location service enables us to secure your account and offer you better services</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Turning on your location service enables us to secure your account and offer you better services</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to capture audio for image picker plugin</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

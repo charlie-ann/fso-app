@@ -1,4 +1,0 @@
-#Tue Jan 28 11:59:43 WAT 2025
-base.0=/Users/Frederick1/Documents/GitHub/fso_support/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

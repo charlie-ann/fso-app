@@ -96,12 +96,14 @@ class TerminalParams {
   int? taskId;
   String? tid;
   bool? isCreateTask;
+  String? supportReqType;
 
   TerminalParams({
     this.terminalModel,
     this.taskId,
     this.tid,
     this.isCreateTask,
+    this.supportReqType,
   });
 }
 
@@ -112,5 +114,15 @@ class TerminalDetailRoute {
   TerminalDetailRoute({
     this.terminalModel,
     this.status,
+  });
+}
+
+class QrRouteParams {
+  int? taskId;
+  String? supportReqType;
+
+  QrRouteParams({
+    this.supportReqType,
+    this.taskId,
   });
 }

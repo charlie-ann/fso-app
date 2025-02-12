@@ -20,8 +20,8 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScanQrCodePage extends ConsumerStatefulWidget {
   static const String routeName = "scan-qr-code-page";
-  final int? taskId;
-  const ScanQrCodePage({super.key, this.taskId});
+  final QrRouteParams? params;
+  const ScanQrCodePage({super.key, this.params});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ScanQrCodePageState();
@@ -97,9 +97,15 @@ class _ScanQrCodePageState extends ConsumerState<ScanQrCodePage> {
                             );
                           }
 
-                          log(scannedBarcodes.first.displayValue.toString());
-                          final decoded = base64Decode(
-                              scannedBarcodes.first.displayValue.toString());
+                          log(scannedBarcodes.first.displayValue
+                              .toString()
+                              .replaceAll(" ", "")
+                              .replaceAll("\n", ""));
+                          final decoded = base64Decode(scannedBarcodes
+                              .first.displayValue
+                              .toString()
+                              .replaceAll(" ", "")
+                              .replaceAll("\n", ""));
                           log(decoded.toString());
                           String decodedString = utf8.decode(decoded);
                           log(decodedString);
@@ -142,8 +148,11 @@ class _ScanQrCodePageState extends ConsumerState<ScanQrCodePage> {
                                     context.pushNamed(
                                       LogSupportPage.routeName,
                                       extra: TerminalParams(
-                                          terminalModel: terminal,
-                                          taskId: widget.taskId),
+                                        terminalModel: terminal,
+                                        taskId: widget.params?.taskId,
+                                        supportReqType:
+                                            widget.params?.supportReqType,
+                                      ),
                                     );
                                   }
                                 },

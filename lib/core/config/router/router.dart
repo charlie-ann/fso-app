@@ -133,7 +133,7 @@ final router = GoRouter(
       path: '/${ScanQrCodePage.routeName}',
       name: ScanQrCodePage.routeName,
       builder: (context, state) => ScanQrCodePage(
-        taskId: state.extra as int?,
+        params: state.extra as QrRouteParams?,
       ),
     ),
     GoRoute(

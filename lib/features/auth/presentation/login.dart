@@ -7,8 +7,8 @@ import 'package:fso_support/core/reusables/button.dart';
 import 'package:fso_support/core/reusables/loader_view.dart';
 import 'package:fso_support/core/reusables/textfield.dart';
 import 'package:fso_support/core/size_config/extensions.dart';
+import 'package:fso_support/core/storage/storage.dart';
 import 'package:fso_support/core/utils/extensions.dart';
-import 'package:fso_support/core/utils/input_formatters.dart';
 import 'package:fso_support/core/utils/validators.dart';
 import 'package:fso_support/dashboard.dart';
 import 'package:fso_support/features/auth/providers/auth_providers.dart';
@@ -28,13 +28,31 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
-  final emailController =
-      TextEditingController(text: "frederick.aneke@iisysgroup.com".ifDebugging);
-  final passwordController = TextEditingController(text: "123456".ifDebugging);
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   bool _isVisible = true;
 
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final storage = StorageImpl();
+      storage.getEmail().then((value) {
+        if (value != null) {
+          emailController.text = value;
+        }
+      });
+      storage.getPassword().then((value) {
+        if (value != null) {
+          passwordController.text = value;
+        }
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return LoaderView(

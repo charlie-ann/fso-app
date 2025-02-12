@@ -346,7 +346,9 @@ class _CreateTaskPageState extends ConsumerState<CreateTaskPage> {
                                                   context.pop();
                                                   context.pushNamed(
                                                     ScanQrCodePage.routeName,
-                                                    extra: res,
+                                                    extra: QrRouteParams(
+                                                      taskId: res,
+                                                    ),
                                                   );
                                                 },
                                               ),

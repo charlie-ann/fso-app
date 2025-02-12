@@ -175,24 +175,37 @@ class StorageImpl implements Storage {
     // await openBox.close();
   }
 
+  // @override
+  // Future<void> savePassword({required String value}) async {
+  //   log(encryptionKey.toString(), name: "encryption key");
+  //   var encryptedBox = await Hive.openBox(securedBox,
+  //       encryptionCipher: HiveAesCipher(encryptionKey));
+  //   encryptedBox.put(passwordKey, value);
+  //   // await encryptedBox.close();
+  // }
   @override
   Future<void> savePassword({required String value}) async {
-    log(encryptionKey.toString(), name: "encryption key");
-    var encryptedBox = await Hive.openBox(securedBox,
-        encryptionCipher: HiveAesCipher(encryptionKey));
-    encryptedBox.put(passwordKey, value);
+    final openBox = await Hive.openBox(userBox);
+    await openBox.put(passwordKey, value);
     // await encryptedBox.close();
   }
 
   @override
   Future<String?> getPassword() async {
-    log(encryptionKey.toString(), name: "encryption key");
-    var encryptedBox = await Hive.openBox(securedBox,
-        encryptionCipher: HiveAesCipher(encryptionKey));
-    final password = encryptedBox.get(passwordKey);
-    // await encryptedBox.close();
-    return password;
+    final openBox = await Hive.openBox(userBox);
+    final value = await openBox.get(passwordKey);
+    // await openBox.close();
+    return value;
   }
+  // @override
+  // Future<String?> getPassword() async {
+  //   log(encryptionKey.toString(), name: "encryption key");
+  //   var encryptedBox = await Hive.openBox(securedBox,
+  //       encryptionCipher: HiveAesCipher(encryptionKey));
+  //   final password = encryptedBox.get(passwordKey);
+  //   // await encryptedBox.close();
+  //   return password;
+  // }
 
   @override
   Future<bool?> getSignUpState() async {

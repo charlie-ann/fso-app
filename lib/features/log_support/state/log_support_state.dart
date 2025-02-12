@@ -63,6 +63,7 @@ Future<void> logSupport(WidgetRef ref, LogSupportParams params) async {
     "bank": params.bankName,
     "uniform_report": params.uniformReport?.toUpperCase(),
     "status": params.supportStatus,
+    "others": params.others,
   };
 
   if (params.logType != "scanned") {

@@ -25,9 +25,23 @@ Future<void> login({
     ref.read(authLoadingProvider.notifier).state = false;
   }, (r) {
     ref.read(currentUser.notifier).state = r;
+    if (r?.passwordChanged == true) {
+      saveDetailsToLocal(ref: ref, email: email, password: password);
+    }
     ref.read(authErrorProvider.notifier).state = null;
     ref.read(authLoadingProvider.notifier).state = false;
   });
+}
+
+Future<void> saveDetailsToLocal({
+  required WidgetRef ref,
+  required String email,
+  required String password,
+  String? pin,
+}) async {
+  final Storage storage = StorageImpl();
+  await storage.saveEmail(value: email);
+  await storage.savePassword(value: password);
 }
 
 Future<void> getUser({

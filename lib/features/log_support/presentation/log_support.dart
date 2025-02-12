@@ -56,6 +56,7 @@ class _LogSupportPageState extends ConsumerState<LogSupportPage> {
   final terminalTypeController = TextEditingController();
   final appVersionController = TextEditingController();
   final purposeController = TextEditingController();
+  final othersController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -94,6 +95,7 @@ class _LogSupportPageState extends ConsumerState<LogSupportPage> {
   @override
   void initState() {
     signController.addListener(() {});
+    selectedSupportType = widget.terminal?.supportReqType;
     if (widget.terminal?.terminalModel != null) {
       setState(() {
         index = 1;
@@ -366,16 +368,18 @@ class _LogSupportPageState extends ConsumerState<LogSupportPage> {
                     controller: purposeController,
                     validator: Validators.validateField,
                   ),
-                  23.vSpacer,
-                  AppDropDown(
-                    label: "Support Type:",
-                    data: supportTypeList,
-                    selectedValue: selectedSupportType,
-                    onChanged: (p0) => setState(() {
-                      selectedSupportType = p0;
-                    }),
-                    validator: Validators.validateField,
-                  ),
+                  if (widget.terminal?.supportReqType == null) ...[
+                    23.vSpacer,
+                    AppDropDown(
+                      label: "Support Type:",
+                      data: supportTypeList,
+                      selectedValue: selectedSupportType,
+                      onChanged: (p0) => setState(() {
+                        selectedSupportType = p0;
+                      }),
+                      validator: Validators.validateField,
+                    ),
+                  ],
                   23.vSpacer,
                   AppDropDown(
                     label: "Support Status:",
@@ -387,7 +391,6 @@ class _LogSupportPageState extends ConsumerState<LogSupportPage> {
                     validator: Validators.validateField,
                   ),
                   23.vSpacer,
-
                   Padding(
                     padding: const EdgeInsets.only(bottom: 6.0),
                     child: Text(
@@ -435,6 +438,11 @@ class _LogSupportPageState extends ConsumerState<LogSupportPage> {
                         ),
                       );
                     },
+                  ),
+                  23.vSpacer,
+                  AppInputField(
+                    label: "Others:",
+                    controller: othersController,
                   ),
                   if (logType != "scanned") ...[
                     23.vSpacer,
@@ -600,6 +608,7 @@ class _LogSupportPageState extends ConsumerState<LogSupportPage> {
                             bankName: selectedBank,
                             supportStatus: selectedSupportStatus,
                             uniformReport: selectedReport,
+                            others: othersController.text,
                           ),
                         );
 

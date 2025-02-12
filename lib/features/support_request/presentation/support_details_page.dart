@@ -112,6 +112,7 @@ class SupportDetailsPage extends StatelessWidget {
                             isQr: true,
                             tid: supportRequestModel?.terminal?.terminalId,
                             taskId: supportRequestModel?.id,
+                            supportReqType: supportRequestModel?.supportType,
                           );
                         },
                         text: "Log with Qr",
@@ -126,6 +127,7 @@ class SupportDetailsPage extends StatelessWidget {
                             isQr: false,
                             tid: supportRequestModel?.terminal?.terminalId,
                             taskId: supportRequestModel?.id,
+                            supportReqType: supportRequestModel?.supportType,
                           );
                         },
                         text: "Log Manually",
@@ -324,6 +326,7 @@ Future<dynamic> handleDialog(
   required bool isQr,
   required String? tid,
   required int? taskId,
+  String? supportReqType,
 }) {
   return showDialog(
     context: context,
@@ -360,7 +363,10 @@ Future<dynamic> handleDialog(
                       context.pop();
                       if (isQr) {
                         context.pushNamed(ScanQrCodePage.routeName,
-                            extra: taskId);
+                            extra: QrRouteParams(
+                              taskId: taskId,
+                              supportReqType: supportReqType,
+                            ));
                       } else {
                         context.pushNamed(
                           LogSupportPage.routeName,
@@ -368,6 +374,7 @@ Future<dynamic> handleDialog(
                             terminalModel: null,
                             taskId: taskId,
                             tid: tid,
+                            supportReqType: supportReqType,
                           ),
                         );
                       }

@@ -61,4 +61,15 @@ class AuthRepoImpl implements AuthRepo {
       return left(Failure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, bool?>> forgotPassword(
+      {required Map<String, dynamic> data}) async {
+    try {
+      final res = await datasource.forgotPassword(data: data);
+      return right(res);
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
 }

@@ -66,12 +66,13 @@ Future<void> resetPassword({
   required WidgetRef ref,
   required String code,
   required String password,
-  required String email,
 }) async {
   ref.read(authLoadingProvider.notifier).state = true;
 
+  final email = ref.read(resetPasswordEmail);
+
   Map<String, dynamic> data = {
-    "code": code,
+    "otp": code,
     "email": email,
     "password": password,
     "user_type": "user",
@@ -83,6 +84,29 @@ Future<void> resetPassword({
     ref.read(authErrorProvider.notifier).state = l.message;
     ref.read(authLoadingProvider.notifier).state = false;
   }, (r) {
+    ref.read(authErrorProvider.notifier).state = null;
+    ref.read(authLoadingProvider.notifier).state = false;
+  });
+}
+
+Future<void> forgotPassword({
+  required WidgetRef ref,
+  required String email,
+}) async {
+  ref.read(authLoadingProvider.notifier).state = true;
+
+  Map<String, dynamic> data = {
+    "email": email,
+    "user_type": "user",
+  };
+
+  final res = await ref.watch(authRepoProvider).forgotPassword(data: data);
+
+  res.fold((l) {
+    ref.read(authErrorProvider.notifier).state = l.message;
+    ref.read(authLoadingProvider.notifier).state = false;
+  }, (r) {
+    ref.read(resetPasswordEmail.notifier).state = email;
     ref.read(authErrorProvider.notifier).state = null;
     ref.read(authLoadingProvider.notifier).state = false;
   });

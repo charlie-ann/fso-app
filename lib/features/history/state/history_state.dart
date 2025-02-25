@@ -12,6 +12,7 @@ Future<void> fetchHistory({required WidgetRef ref}) async {
             DateTime.now().year, DateTime.now().month, DateTime.now().day - 30)
         .toIso8601String(),
     "end_date": DateTime.now().toIso8601String(),
+    "all_types": 1,
   };
 
   final res =

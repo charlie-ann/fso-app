@@ -15,6 +15,7 @@ class ImageStrings {
   static const String search = 'assets/images/search_icon.png';
   static const String pos = 'assets/images/pos.png';
   static const String roadMap = 'assets/images/distance.png';
+  static const String forgotPassword = 'assets/images/forgot_password.jpg';
 }
 
 const kThemePreference = "theme_preference";

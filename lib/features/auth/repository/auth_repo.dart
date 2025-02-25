@@ -9,6 +9,8 @@ abstract class AuthRepo {
       {required Map<String, dynamic> data});
   Future<Either<Failure, bool?>> changePassword(
       {required Map<String, dynamic> data});
+  Future<Either<Failure, bool?>> forgotPassword(
+      {required Map<String, dynamic> data});
   Future<Either<Failure, bool?>> clockIn({required Map<String, dynamic> data});
   Future<Either<Failure, UserModel?>> getUser();
 }

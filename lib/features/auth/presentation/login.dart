@@ -11,6 +11,7 @@ import 'package:fso_support/core/storage/storage.dart';
 import 'package:fso_support/core/utils/extensions.dart';
 import 'package:fso_support/core/utils/validators.dart';
 import 'package:fso_support/dashboard.dart';
+import 'package:fso_support/features/auth/presentation/forgot_password.dart';
 import 'package:fso_support/features/auth/providers/auth_providers.dart';
 import 'package:fso_support/features/auth/state/auth_state.dart';
 import 'package:fso_support/features/history/state/history_state.dart';
@@ -147,6 +148,22 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   },
                   text: "Log In",
                 ),
+                16.vSpacer,
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: GestureDetector(
+                    onTap: () {
+                      context.pushNamed(ForgotPasswordPage.routeName);
+                    },
+                    child: Text(
+                      "Forgot Password?",
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        fontSize: 12.text,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

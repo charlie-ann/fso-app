@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fso_support/dashboard.dart';
 import 'package:fso_support/features/auth/presentation/change_password.dart';
+import 'package:fso_support/features/auth/presentation/forgot_password.dart';
+import 'package:fso_support/features/auth/presentation/otp_page.dart';
+import 'package:fso_support/features/auth/presentation/reset_password.dart';
 import 'package:fso_support/features/history/models/history_model.dart';
 import 'package:fso_support/features/log_support/presentation/create_task.dart';
 import 'package:fso_support/features/log_support/presentation/qr_scanner.dart';
@@ -125,9 +128,26 @@ final router = GoRouter(
       builder: (context, state) => const ChangePasswordPage(),
     ),
     GoRoute(
+      path: '/${ForgotPasswordPage.routeName}',
+      name: ForgotPasswordPage.routeName,
+      builder: (context, state) => const ForgotPasswordPage(),
+    ),
+    GoRoute(
+      path: '/${OtpPage.routeName}',
+      name: OtpPage.routeName,
+      builder: (context, state) => const OtpPage(),
+    ),
+    GoRoute(
       path: '/${RoadMapPage.routeName}',
       name: RoadMapPage.routeName,
       builder: (context, state) => const RoadMapPage(),
+    ),
+    GoRoute(
+      path: '/${ResetPasswordPage.routeName}',
+      name: ResetPasswordPage.routeName,
+      builder: (context, state) => ResetPasswordPage(
+        code: state.extra as String,
+      ),
     ),
     GoRoute(
       path: '/${ScanQrCodePage.routeName}',

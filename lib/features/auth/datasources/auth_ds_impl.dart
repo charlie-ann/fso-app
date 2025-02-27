@@ -67,7 +67,7 @@ class AuthDSImpl implements AuthDS {
         AppEndpoints.changedPassword,
         data: data,
       );
-      log(res.toString(), name: "resetPassword");
+      log(res.toString(), name: "changePassword");
       if (res.statusCode == 200 || res.statusCode == 201) {
         return true;
       } else {
@@ -76,7 +76,7 @@ class AuthDSImpl implements AuthDS {
     } on DioException {
       rethrow;
     } catch (e) {
-      log(e.toString(), name: "resetPassword err");
+      log(e.toString(), name: "changePassword err");
       rethrow;
     }
   }
@@ -120,6 +120,29 @@ class AuthDSImpl implements AuthDS {
       rethrow;
     } catch (e) {
       log(e.toString(), name: "clockIn err");
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool?> forgotPassword({required Map<String, dynamic> data}) async {
+    try {
+      log(data.toString());
+
+      final res = await api.dio.post(
+        AppEndpoints.forgotPassword,
+        data: data,
+      );
+      log(res.toString(), name: "forgotPassword");
+      if (res.statusCode == 200 || res.statusCode == 201) {
+        return true;
+      } else {
+        throw Exception();
+      }
+    } on DioException {
+      rethrow;
+    } catch (e) {
+      log(e.toString(), name: "forgotPassword err");
       rethrow;
     }
   }

@@ -7,6 +7,8 @@ import 'package:fso_support/features/auth/repository/auth_repo_impl.dart';
 
 final currentUser = StateProvider<UserModel?>((ref) => null);
 
+final resetPasswordEmail = StateProvider<String?>((ref) => null);
+
 //loading provider
 final authLoadingProvider = StateProvider<bool>((ref) => false);
 

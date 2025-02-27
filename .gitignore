@@ -55,6 +55,7 @@ linked_*.ds
 unlinked.ds
 unlinked_spec.ds
 .fvm/
+android/app/.cxx
 
 # Android related
 **/android/**/gradle-wrapper.jar

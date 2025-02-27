@@ -1,0 +1,2 @@
+/home/charlie/Documents/FSO%20MOBILE%20APP/android/app/.cxx/RelWithDebInfo/6a1a2c1y/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/charlie/Documents/FSO%20MOBILE%20APP/android/app/.cxx/RelWithDebInfo/6a1a2c1y/armeabi-v7a/CMakeFiles/rebuild_cache.dir

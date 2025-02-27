@@ -1,0 +1,1 @@
+/home/charlie/Documents/FSO%20MOBILE%20APP/build/app/intermediates/cxx/RelWithDebInfo/6a1a2c1y/obj/arm64-v8a

@@ -42,6 +42,7 @@ class TerminalModel {
   String? batteryLevel;
   DateTime? lastConnection;
   String? terminalType;
+  String? phoneNumber;
 
   TerminalModel({
     this.id,
@@ -63,6 +64,7 @@ class TerminalModel {
     this.batteryLevel,
     this.lastConnection,
     this.terminalType,
+    this.phoneNumber,
   });
 
   TerminalModel.fromJson(Map<String, dynamic> json) {
@@ -88,6 +90,7 @@ class TerminalModel {
         ? DateTime.parse(json["extra"]['lastConnectionDate'])
         : null;
     terminalType = json["extra"]?['type'];
+    phoneNumber = json['phone_number'];
   }
 }
 

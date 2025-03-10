@@ -13,6 +13,7 @@ import 'package:fso_support/features/support_request/presentation/widgets/reject
 import 'package:fso_support/features/terminals/models/terminal_model.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SupportDetailsPage extends StatelessWidget {
   static const String routeName = 'support-details-page';
@@ -65,7 +66,33 @@ class SupportDetailsPage extends StatelessWidget {
                         buildRow(
                           context,
                           title: "Phone Number",
-                          value: supportRequestModel?.phoneNumber ?? "",
+                          value: "",
+                          extra: InkWell(
+                            onTap: () async {
+                              Uri phoneno = Uri.parse(
+                                  "tel:${supportRequestModel?.phoneNumber}");
+                              if (await launchUrl(phoneno)) {
+                                //dialer opened
+                              }
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  supportRequestModel?.phoneNumber ?? "",
+                                  style: context.textTheme.labelLarge?.copyWith(
+                                    color: AppColors.blackText,
+                                    fontSize: 12.text,
+                                  ),
+                                ),
+                                10.hSpacer,
+                                const Icon(
+                                  Icons.phone,
+                                  color: AppColors.primary,
+                                  size: 14,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         20.vSpacer,
                       ],
@@ -242,6 +269,7 @@ class SupportDetailsPage extends StatelessWidget {
     required String title,
     required String value,
     bool isDocument = false,
+    Widget? extra,
   }) {
     return Row(
       children: [
@@ -255,40 +283,42 @@ class SupportDetailsPage extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          flex: 3,
-          child: isDocument
-              ? FittedBox(
-                  fit: BoxFit.scaleDown,
-                  alignment: Alignment.centerLeft,
-                  child: GestureDetector(
-                    onTap: () => context.pushNamed(PhotoViewPage.routeName,
-                        extra: value),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.primary.withOpacity(.08),
-                      ),
-                      child: Text(
-                        "Click to view document",
-                        style: context.textTheme.bodySmall?.copyWith(
-                          fontSize: 10,
-                          color: AppColors.primary,
+        if (extra == null)
+          Expanded(
+            flex: 3,
+            child: isDocument
+                ? FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                      onTap: () => context.pushNamed(PhotoViewPage.routeName,
+                          extra: value),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 14, vertical: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.primary.withOpacity(.08),
+                        ),
+                        child: Text(
+                          "Click to view document",
+                          style: context.textTheme.bodySmall?.copyWith(
+                            fontSize: 10,
+                            color: AppColors.primary,
+                          ),
                         ),
                       ),
                     ),
+                  )
+                : Text(
+                    value,
+                    style: context.textTheme.labelLarge?.copyWith(
+                      color: AppColors.blackText,
+                      fontSize: 12.text,
+                    ),
                   ),
-                )
-              : Text(
-                  value,
-                  style: context.textTheme.labelLarge?.copyWith(
-                    color: AppColors.blackText,
-                    fontSize: 12.text,
-                  ),
-                ),
-        ),
+          ),
+        if (extra != null) Expanded(flex: 3, child: extra),
       ],
     );
   }

@@ -7,6 +7,7 @@ import 'package:fso_support/core/utils/extensions.dart';
 import 'package:fso_support/features/support_request/presentation/support_details_page.dart';
 import 'package:fso_support/features/terminals/models/terminal_model.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TerminalDetailsPage extends StatelessWidget {
   static const String routeName = 'terminal-details-page';
@@ -48,12 +49,40 @@ class TerminalDetailsPage extends StatelessWidget {
                     title: "T.I.D",
                     value: terminal.terminalModel?.terminalId ?? "",
                   ),
-                  // 20.vSpacer,
-                  // buildRow(
-                  //   context,
-                  //   title: "Phone Number",
-                  //   value: terminal.terminalModel.,
-                  // ),
+                  if (terminal.terminalModel?.phoneNumber != null) ...[
+                    20.vSpacer,
+                    buildRow(
+                      context,
+                      title: "Phone Number",
+                      value: "",
+                      extra: InkWell(
+                        onTap: () async {
+                          Uri phoneno = Uri.parse(
+                              "tel:${terminal.terminalModel?.phoneNumber}");
+                          if (await launchUrl(phoneno)) {
+                            //dialer opened
+                          }
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              terminal.terminalModel?.phoneNumber ?? "",
+                              style: context.textTheme.labelLarge?.copyWith(
+                                color: AppColors.blackText,
+                                fontSize: 12.text,
+                              ),
+                            ),
+                            10.hSpacer,
+                            const Icon(
+                              Icons.phone,
+                              color: AppColors.primary,
+                              size: 14,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                   20.vSpacer,
                   buildRow(
                     context,
@@ -189,11 +218,11 @@ class TerminalDetailsPage extends StatelessWidget {
     BuildContext context, {
     required String title,
     required String value,
+    Widget? extra,
   }) {
     return Row(
       children: [
         Expanded(
-          flex: 2,
           child: Text(
             "$title: ",
             style: context.textTheme.bodySmall?.copyWith(
@@ -202,16 +231,17 @@ class TerminalDetailsPage extends StatelessWidget {
             ),
           ),
         ),
-        Expanded(
-          flex: 3,
-          child: Text(
-            value,
-            style: context.textTheme.labelLarge?.copyWith(
-              color: AppColors.blackText,
-              fontSize: 12.text,
+        if (extra == null)
+          Expanded(
+            child: Text(
+              value,
+              style: context.textTheme.labelLarge?.copyWith(
+                color: AppColors.blackText,
+                fontSize: 12.text,
+              ),
             ),
           ),
-        ),
+        if (extra != null) Expanded(child: extra),
       ],
     );
   }
